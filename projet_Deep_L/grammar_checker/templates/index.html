@@ -1,0 +1,349 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Correcteur de Grammaire IA</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="nav-logo">
+                    <img src="icons8_grammarly_32.png" alt="">
+                    
+                    <span >WriteRight</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#features">Fonctionnalités</a>
+                    <a href="#how-it-works">Comment ça marche</a>
+                    <button class="btn-primary">Commencer</button>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#features">Fonctionnalités</a>
+        <a href="#how-it-works">Comment ça marche</a>
+        <button class="btn-primary">Commencer</button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="badge">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                        <path d="M5 3v4"/>
+                        <path d="M19 17v4"/>
+                        <path d="M3 5h4"/>
+                        <path d="M17 19h4"/>
+                    </svg>
+                    Assistant d'Écriture IA
+                </div>
+                <h1>
+                    Écrivez avec confiance. 
+                    <span class="text-primary">Sans erreur.</span>
+                </h1>
+                <p class="hero-description">
+                    Trouvez et corrigez instantanément les erreurs de grammaire, d'orthographe et de style dans vos écrits. 
+                    Parfait pour les étudiants, les professionnels et les créateurs de contenu.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#commence">
+                    <button class="btn-primary btn-lg">
+                        Commencer
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14"/>
+                            <path d="m12 5 7 7-7 7"/>
+                        </svg>
+                    </button></a>
+                    <button class="btn-outline btn-lg">Voir Comment Ça Marche</button>
+                </div>
+                <div class="hero-features">
+                    <div class="hero-feature">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                            <path d="m9 12 2 2 4-4"/>
+                        </svg>
+                        <span>Gratuit</span>
+                    </div>
+                    <div class="hero-feature">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                            <path d="m9 12 2 2 4-4"/>
+                        </svg>
+                        <span>Pas d'inscription</span>
+                    </div>
+                    <div class="hero-feature">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                            <path d="m9 12 2 2 4-4"/>
+                        </svg>
+                        <span>Résultats instantanés</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section class="demo-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Essayez maintenant - Commencez à taper ou collez votre texte</h2>
+                <p>Voyez les corrections de grammaire et d'orthographe instantanément</p>
+            </div>
+
+            <!-- Stats Display -->
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgb(219 234 254); color: rgb(37 99 235);">
+                        <svg width="10" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 7V4h16v3"/>
+                            <path d="M5 20h6"/>
+                            <path d="M13 4 8 20"/>
+                        </svg>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-label">Mots</div>
+                        <div class="stat-value" id="wordCount">0</div>
+                    </div>
+                </div>
+                <div class="stat-card" id ="commence">
+                    <div class="stat-icon" style="background: rgb(220 252 231); color: rgb(22 163 74);">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-label">Temps de lecture</div>
+                        <div class="stat-value" id="readingTime">0 min</div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <!-- Grammar Checker -->
+            <div class="grammar-checker" >
+                <div class="editor-panel">
+                    <div class="editor-header">
+                        <span>Éditeur de texte</span>
+                        <button class="btn-primary" id="checkBtn" style="background-color: #28a745; color: white; margin-right: 10px;">Corriger</button>
+                        <button class="btn-secondary" id="clearBtn">Effacer</button>
+                    </div>
+                    <div class="editor-content" id="editor" contenteditable="true">
+                        
+                    </div>
+                </div>
+
+                <div class="suggestions-panel" id="suggestionsPanel">
+                    <div class="suggestions-header">
+                        <h3>Suggestions</h3>
+                        <div class="error-counts">
+                            <span class="error-badge spelling" id="spellingCount">0</span>
+                            <span class="error-badge grammar" id="grammarCount">0</span>
+                            <span class="error-badge style" id="styleCount">0</span>
+                        </div>
+                    </div>
+                    <div class="editor-content readonly-mode" id="correction-output">
+                        La correction s'affichera ici...
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+<div style="margin-top: 2px; text-align: right;">
+    <button id="btn-corriger" style="padding: 10px 20px; background: blue; color: white; border: none; border-radius: 4px; cursor: pointer;">
+        Lancer la correction
+    </button>
+</div>
+
+   
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Fonctionnalités puissantes pour mieux écrire</h2>
+                <p>Tout ce dont vous avez besoin pour écrire clairement, avec confiance et sans erreur</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: rgb(219 234 254); color: rgb(37 99 235);">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                        </svg>
+                    </div>
+                    <h3>Vérification en temps réel</h3>
+                    <p>Obtenez des commentaires instantanés pendant que vous tapez. Voyez les erreurs surlignées en temps réel avec des suggestions contextuelles.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: rgb(220 252 231); color: rgb(22 163 74);">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                            <path d="m9 12 2 2 4-4"/>
+                        </svg>
+                    </div>
+                    <h3>Grammaire & Orthographe</h3>
+                    <p>L'IA avancée détecte les erreurs de grammaire, les fautes d'orthographe et fournit des explications claires.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: rgb(243 232 255); color: rgb(147 51 234);">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                        </svg>
+                    </div>
+                    <h3>Suggestions de style</h3>
+                    <p>Améliorez votre style d'écriture avec des suggestions de clarté, de concision et de ton.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: rgb(254 249 195); color: rgb(202 138 4);">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3>Confidentialité d'abord</h3>
+                    <p>Votre texte est traité en toute sécurité. Nous ne stockons ni ne partageons votre contenu avec personne.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: rgb(254 202 202); color: rgb(220 38 38);">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="2" y1="12" x2="22" y2="12"/>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                    </div>
+                    <h3>Fonctionne partout</h3>
+                    <p>Utilisez-le sur n'importe quel appareil - ordinateur, tablette ou mobile. Aucune installation requise.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: rgb(254 215 170); color: rgb(234 88 12);">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <h3>Approuvé par des millions</h3>
+                    <p>Rejoignez des millions d'utilisateurs qui écrivent mieux avec notre correcteur de grammaire IA.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Comment ça marche</h2>
+                <p>Trois étapes simples pour une écriture sans erreur</p>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Tapez ou Collez</h3>
+                    <p>Commencez à taper ou collez votre texte dans l'éditeur. Fonctionne avec n'importe quel contenu.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Examinez les Suggestions</h3>
+                    <p>Voyez les erreurs surlignées instantanément. Cliquez sur n'importe quel problème pour voir des explications détaillées.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Appliquez les Corrections</h3>
+                    <p>Acceptez les suggestions en un clic. Votre texte est instantanément corrigé et amélioré.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Prêt à mieux écrire?</h2>
+                <p>Commencez à vérifier votre grammaire et votre orthographe gratuitement. Aucune inscription requise.</p>
+                <button class="btn-primary btn-lg">
+                    Commencer Maintenant
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14"/>
+                        <path d="m12 5 7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <path d="m9 15 2 2 4-4"></path>
+                        </svg>
+                        <span>WriteRight</span>
+                    </div>
+                    <p>Votre assistant d'écriture IA pour un contenu sans erreur.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Produit</h4>
+                        <a href="#features">Fonctionnalités</a>
+                        <a href="#">Tarifs</a>
+                        <a href="#">Extensions</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Entreprise</h4>
+                        <a href="#">À propos</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Carrières</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <a href="#">Aide</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Confidentialité</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 WriteRight. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="{% static 'script.js' %}"></script>
+
+</body>
+</html>
